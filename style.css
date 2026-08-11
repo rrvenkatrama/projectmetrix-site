@@ -57,6 +57,7 @@ section[id] { scroll-margin-top: 84px; }
 .nav nav { margin-left: auto; display: flex; align-items: center; gap: 22px; }
 .nav nav a { color: var(--body); text-decoration: none; font-size: .95rem; font-weight: 500; }
 .nav nav a:hover { color: var(--accent); }
+.nav nav a.keep { font-weight: 600; }
 .nav .cta {
   background: var(--ink); color: #fff; padding: 8px 16px; border-radius: 8px;
 }
@@ -156,8 +157,13 @@ footer { border-top: 1px solid var(--line); padding: 26px 0; }
   .cols-3, .cards, .roadmap { grid-template-columns: 1fr; }
   .feature { grid-template-columns: 1fr; gap: 26px; margin: 44px 0; }
   .feature.reverse .feature-text { order: 0; }
-  .nav nav { gap: 14px; }
-  .nav nav a:not(.cta) { display: none; }
+  .nav { padding: 12px 16px; gap: 10px; }
+  .nav nav { gap: 12px; }
+  .nav nav a { white-space: nowrap; }
+  .nav nav a:not(.cta):not(.keep) { display: none; }
+  .nav nav a.keep { font-size: .86rem; }
+  .nav .cta { padding: 7px 13px; font-size: .86rem; }
+  .brand { font-size: 1rem; }
   .section, .band { padding: 56px 0; }
   .section { padding-inline: 24px; }
 }
