@@ -1,0 +1,15 @@
+{
+  // Deploy config for projectmetrix.dev.
+  //
+  // The worker name MUST stay as the one Cloudflare generated when you first
+  // uploaded the folder — that is the worker the custom domain
+  // projectmetrix.dev is attached to. Renaming it here would create a
+  // SECOND worker and leave the domain pointing at the old one.
+  "name": "summer-shadow-4305",
+  "compatibility_date": "2026-08-11",
+
+  // Static-assets-only worker: no server code, Cloudflare serves the files.
+  "assets": {
+    "directory": "./"
+  }
+}

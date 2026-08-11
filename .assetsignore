@@ -1,0 +1,7 @@
+# Files in this folder that should NOT be published to the website.
+wrangler.jsonc
+package.json
+package-lock.json
+node_modules
+README.md
+.assetsignore

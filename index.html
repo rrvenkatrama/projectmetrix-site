@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProjectMetrix — agentic project &amp; portfolio management for enterprise IT</title>
+<meta name="description" content="A project, program and portfolio management platform for enterprise IT teams: a real critical-path scheduling engine paired with AI assistants that learn from your own delivery history.">
+<link rel="canonical" href="https://projectmetrix.dev/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://projectmetrix.dev/">
+<meta property="og:title" content="ProjectMetrix — agentic project &amp; portfolio management for enterprise IT">
+<meta property="og:description" content="A real critical-path scheduling engine paired with AI assistants that learn from your own delivery history.">
+<meta property="og:image" content="https://projectmetrix.dev/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111827'/><rect x='6' y='9' width='13' height='4' rx='2' fill='%232563eb'/><rect x='9' y='16' width='16' height='4' rx='2' fill='%2360a5fa'/><rect x='6' y='23' width='9' height='4' rx='2' fill='%23dc2626'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="/">Project<span>Metrix</span></a>
+  <nav>
+    <a href="#product">Product</a>
+    <a href="#how">How it works</a>
+    <a href="#engineering">Engineering</a>
+    <a href="#roadmap">Roadmap</a>
+    <a class="cta" href="#contact">Get in touch</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Project · Program · Portfolio management for enterprise IT</p>
+    <h1>Your PMO gets smarter with every project it delivers.</h1>
+    <p class="lede">
+      Most work-management tools track tasks. ProjectMetrix schedules them — a real critical-path
+      engine that re-plans your timeline the moment reality changes, paired with AI assistants that
+      learn from what actually happened on your past projects.
+    </p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#product">See the product</a>
+      <a class="btn" href="#engineering">How it's built</a>
+    </div>
+    <figure class="shot hero-shot">
+      <img src="img/gantt-full.png" alt="ProjectMetrix Gantt view showing a data centre migration plan with critical path highlighted, dependency links, and an editable schedule grid" width="2880" height="1800" loading="eager">
+    </figure>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap cols-3">
+    <div>
+      <h3>A scheduler, not a task list</h3>
+      <p>Finish-to-start, start-to-start, finish-to-finish and start-to-finish links with lead and lag,
+         calendar-aware working time, constraints, float and critical path. Change one duration and
+         every downstream date moves.</p>
+    </div>
+    <div>
+      <h3>Status you didn't type in</h3>
+      <p>Project health is computed from the plan — schedule performance, slip against baseline, open
+         risk exposure and overdue commitments — and it shows its reasoning. No more RAG status that
+         means whatever the PM felt like that Friday.</p>
+    </div>
+    <div>
+      <h3>AI that asks before it acts</h3>
+      <p>Every assistant proposal carries its evidence, and every schedule change is simulated and
+         previewed before a human confirms it. Nothing moves your plan behind your back.</p>
+    </div>
+  </div>
+</section>
+
+<section id="product" class="wrap section">
+  <h2>The product</h2>
+
+  <div class="feature">
+    <div class="feature-text">
+      <h3>Critical path, on the web</h3>
+      <p>
+        Plans of a thousand tasks and more, with an editable grid beside an interactive Gantt.
+        Durations, dates, predecessors, constraints and resources are all editable inline; the engine
+        recomputes the entire network on every edit and the chart redraws immediately.
+      </p>
+      <p>
+        Filter to the critical path and the plan collapses to the chain that actually drives your
+        finish date — the tasks where a day lost is a day lost on the project.
+      </p>
+    </div>
+    <figure class="shot">
+      <img src="img/gantt-critical-path.png" alt="The same plan filtered to critical path only, showing just the zero-float chain in green" loading="lazy">
+    </figure>
+  </div>
+
+  <div class="feature reverse">
+    <div class="feature-text">
+      <h3>Ask for what you want</h3>
+      <p>
+        "How are we doing?" · "Push the DB migration out three days" · "What does this task block?"
+        The assistant understands your plan, and any request that would change the schedule is
+        simulated first.
+      </p>
+      <p>
+        The preview is the point: before anything is written, you see exactly which tasks move, which
+        milestones slip, and what it does to the finish date. Then you confirm — or you don't.
+      </p>
+    </div>
+    <figure class="shot narrow">
+      <img src="img/chat-panel.png" alt="Chat panel showing a requested three-day delay, with a table of affected tasks, milestone slips, and Confirm or Cancel buttons" loading="lazy">
+    </figure>
+  </div>
+
+  <div class="feature">
+    <div class="feature-text">
+      <h3>Portfolio and program rollups</h3>
+      <p>
+        Programs roll up from their projects and portfolios from their programs — health, progress,
+        finish dates, slip against baseline, open risks and overdue actions. All computed bottom-up
+        from the schedules underneath, never hand-entered into a status spreadsheet.
+      </p>
+    </div>
+    <figure class="shot">
+      <img src="img/portfolio.png" alt="Portfolio view listing programs with their projects, showing rolled-up health, progress, finish dates and slip" loading="lazy">
+    </figure>
+  </div>
+
+  <div class="feature reverse">
+    <div class="feature-text">
+      <h3>Health that explains itself</h3>
+      <p>
+        Every status colour comes with the reasons behind it: how far the finish date has slipped, how
+        delivery compares with the plan, which risks are live, and what's overdue. Baselines make
+        plan-versus-actual visible instead of anecdotal.
+      </p>
+    </div>
+    <figure class="shot">
+      <img src="img/status.png" alt="Status view showing computed project health with a why-this-RAG explanation, milestone variance against baseline, and top risks" loading="lazy">
+    </figure>
+  </div>
+
+  <div class="feature">
+    <div class="feature-text">
+      <h3>Delivery measured against outcomes</h3>
+      <p>
+        Objectives and key results, with programs linked to the results they're meant to move. Each key
+        result shows two numbers side by side: the business outcome, and the delivery progress rolled
+        up from the schedule.
+      </p>
+      <p class="pull">
+        When delivery reads 100% and the outcome reads 40%, that's the conversation worth having —
+        we shipped it, and it didn't move the needle.
+      </p>
+    </div>
+    <figure class="shot">
+      <img src="img/okrs.png" alt="OKR view with executive and org-level objectives, each key result showing outcome progress next to delivery progress rolled up from linked programs" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<section id="how" class="band">
+  <div class="wrap">
+    <h2>How the AI works — and why you can trust it</h2>
+    <div class="cols-3 principles">
+      <div>
+        <h3>Propose, don't impose</h3>
+        <p>Assistants write proposals, not changes. A human reviews and approves in an inbox. Where
+           auto-execution is genuinely safe — a reminder email, a metrics snapshot — it's explicit and
+           configurable, not assumed.</p>
+      </div>
+      <div>
+        <h3>Evidence or it doesn't ship</h3>
+        <p>Every proposal cites what it reasoned from: the meeting note and the exact quote, the risks
+           that materialised on similar past projects, the float that's been eroding for three weeks.
+           No citation, no proposal.</p>
+      </div>
+      <div>
+        <h3>The engine does the arithmetic</h3>
+        <p>Dates, float, impact and metrics are computed deterministically. The language model
+           explains, extracts and drafts — it never does the maths. Ask twice, get the same numbers.</p>
+      </div>
+    </div>
+    <figure class="shot centered">
+      <img src="img/agent-inbox.png" alt="Agent inbox showing proposals from the action item, risk and reporting assistants, each with supporting evidence and approve or reject actions" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<section id="engineering" class="wrap section">
+  <h2>Built properly</h2>
+  <p class="section-lede">
+    Scheduling is unglamorous and easy to get subtly wrong, which is exactly why so few tools do it.
+    A few of the decisions underneath ProjectMetrix.
+  </p>
+
+  <div class="cards">
+    <article>
+      <h3>The engine owns every date</h3>
+      <p>Clients write inputs — durations, dependencies, constraints, calendars. Every computed field
+         is written only by the scheduling engine, which is pure and deterministic: same plan in, same
+         dates out, byte for byte. That's what makes what-if simulation trivial and testing honest.</p>
+    </article>
+    <article>
+      <h3>Fast enough to feel instant</h3>
+      <p>A full recompute of a 1,000-plus task network runs in milliseconds. The first implementation
+         was two orders of magnitude slower; profiling pointed at calendar arithmetic, and memoising
+         the working-day map fixed it. Measured, not assumed.</p>
+    </article>
+    <article>
+      <h3>Multi-tenant from row one</h3>
+      <p>Tenant isolation is enforced by the database itself through row-level security, not by
+         remembering to add a filter in application code. Cross-tenant reads return nothing and
+         cross-tenant writes are rejected — verified by tests that deliberately try.</p>
+    </article>
+    <article>
+      <h3>Every change is on the record</h3>
+      <p>An append-only audit log captures who changed what, when, and what it looked like before —
+         including which AI assistant proposed it and which human approved. It's the compliance story
+         and the training corpus at the same time.</p>
+    </article>
+    <article>
+      <h3>Enterprise identity, day one</h3>
+      <p>Single sign-on via OIDC, federating whatever directory a company already runs. Access and
+         permissions follow existing groups, joiners and leavers sync automatically, and people who
+         should be nameable — sponsors, vendors, SMEs — don't need accounts.</p>
+    </article>
+    <article>
+      <h3>One API, no divergence</h3>
+      <p>A single specification drives the product surface and the assistant's tool registry, so
+         anything the interface can do can be asked for in plain language. Chat capabilities can't
+         drift from the product because they're generated from the same source.</p>
+    </article>
+  </div>
+</section>
+
+<section id="roadmap" class="band">
+  <div class="wrap">
+    <h2>Where this is going</h2>
+    <p class="section-lede">
+      The scheduling and data foundation came first on purpose: assistants that reason about a
+      portfolio are only as good as the schedule underneath them. What's here today is honest, and so
+      is what isn't.
+    </p>
+
+    <div class="roadmap">
+      <div class="rm-group">
+        <h4><span class="pill done">Built</span></h4>
+        <ul>
+          <li>Critical-path scheduling engine with calendars, constraints, float and all four dependency types</li>
+          <li>Interactive Gantt and editable plan grid, 1,000+ task plans</li>
+          <li>Baselines, plan-versus-actual variance, program and portfolio rollups</li>
+          <li>Computed project health with explained reasoning</li>
+          <li>Multi-tenant data platform, audit history, enterprise single sign-on</li>
+        </ul>
+      </div>
+      <div class="rm-group">
+        <h4><span class="pill wip">In progress</span></h4>
+        <ul>
+          <li>Advanced scheduling — resource levelling and effort-driven tasks</li>
+          <li>Importers for the tools teams already run on</li>
+        </ul>
+      </div>
+      <div class="rm-group">
+        <h4><span class="pill next">Designed</span></h4>
+        <ul>
+          <li><strong>Risk Agent</strong> — predicts emerging risk from what actually materialised on similar past projects, with suggested mitigations</li>
+          <li><strong>Planning Agent</strong> — drafts a plan for new work from how similar projects really ran, not from optimism</li>
+          <li><strong>Project Control Agent</strong> — keeps the PM ahead of trends before they become slips</li>
+          <li><strong>Task Agent</strong> — chases owners, follows up commitments, keeps status current</li>
+          <li><strong>Reporting Agent</strong> — drafts the status report, with sentiment and divergence flags</li>
+          <li><strong>Conversational assistant</strong> — plain-language querying and editing, with previewed writes</li>
+        </ul>
+      </div>
+      <div class="rm-group">
+        <h4><span class="pill later">Planned</span></h4>
+        <ul>
+          <li><strong>Capacity Agent</strong> — forecasts crunches before they hit delivery dates</li>
+          <li><strong>Cross-Project Dependency Agent</strong> — warns when one project's slip breaks another's assumptions</li>
+          <li><strong>Benefits Agent</strong> — tracks whether delivered projects moved the business outcome</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wrap section contact">
+  <h2>Get in touch</h2>
+  <p>
+    ProjectMetrix is built and delivered as a tailored deployment for each customer rather than a
+    self-serve signup. If you run a PMO and the problems above sound familiar — or you'd like a
+    walkthrough of the product — I'd like to hear from you.
+  </p>
+  <p class="contact-actions">
+    <a class="btn primary" href="mailto:rrvenkatrama@gmail.com?subject=ProjectMetrix">Request a walkthrough</a>
+    <a class="btn" href="https://linkedin.com/in/rvrajesh123" rel="noopener">LinkedIn</a>
+  </p>
+  <p class="byline">
+    Built by <strong>Rajesh Ramani</strong>, PMP — twenty-plus years leading infrastructure and data
+    centre programs at Apple and Oracle, now building the tool he wanted while running them.
+  </p>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 ProjectMetrix</span>
+    <span>projectmetrix.dev</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "projectmetrix-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static marketing site for projectmetrix.dev",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "python3 -m http.server 4173"
+  },
+  "devDependencies": {
+    "wrangler": "^3.114.0"
+  }
+}
