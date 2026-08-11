@@ -15,6 +15,18 @@ no testimonials, no "trusted by". The roadmap section states plainly what is
 Built, In progress, Designed and Planned. That honesty is deliberate: an
 overstated claim discovered in an interview costs more than it gains.
 
+## The theme is locked
+
+The visual design was approved on 2026-08-11 and must not be changed as a
+side effect of other work. That means the palette, the type scale, the
+sticky nav, the framed screenshots, the cards and the roadmap pills all stay
+as they are.
+
+Content is a different matter — copy, new sections, new screenshots and new
+links are all fine, and should reuse the existing classes. If something new
+genuinely needs styling, extend `style.css` in the same idiom rather than
+introducing a second visual language.
+
 ## Screenshots
 
 Captured automatically from the running prototype, so they can be
