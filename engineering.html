@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How ProjectMetrix is built — engineering</title>
+<meta name="description" content="The engineering decisions underneath ProjectMetrix: a pure deterministic scheduling engine, database-enforced multi-tenancy, an append-only audit log, enterprise identity federation and an API-first contract.">
+<link rel="canonical" href="https://projectmetrix.dev/engineering.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://projectmetrix.dev/engineering.html">
+<meta property="og:title" content="How ProjectMetrix is built">
+<meta property="og:description" content="A pure deterministic scheduling engine, database-enforced tenant isolation, an append-only audit log, and an API-first contract shared by the UI and the agents.">
+<meta property="og:image" content="https://projectmetrix.dev/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23111827'/><rect x='6' y='9' width='13' height='4' rx='2' fill='%232563eb'/><rect x='9' y='16' width='16' height='4' rx='2' fill='%2360a5fa'/><rect x='6' y='23' width='9' height='4' rx='2' fill='%23dc2626'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="/">Project<span>Metrix</span></a>
+  <nav>
+    <a href="/#how">How it works</a>
+    <a href="/#agents">Agents</a>
+    <a href="/#product">Product</a>
+    <a href="/#roadmap">Roadmap</a>
+    <a class="keep" href="https://rrvenkatrama.github.io/projectmetrix-prototype/" rel="noopener">Live demo</a>
+    <a class="cta" href="/#contact">Get in touch</a>
+  </nav>
+</header>
+
+<section class="wrap section">
+  <p class="eyebrow">Engineering</p>
+  <h1 class="page-title">Built properly</h1>
+  <p class="section-lede">
+    Scheduling is unglamorous and easy to get subtly wrong, which is exactly why so few tools do it.
+    Everything an agent recommends rests on the plan being computed correctly, the data being isolated
+    correctly and every change being on the record — so those came first. A few of the decisions
+    underneath ProjectMetrix.
+  </p>
+
+  <p class="section-lede opensource">
+    Two pieces are open source, if you would rather read code than prose: the
+    <a href="https://github.com/rrvenkatrama/cpm-scheduling-engine" rel="noopener">scheduling engine</a>
+    — dependency-free, 25 tests, with a performance budget asserting a 1,200-task plan computes in
+    milliseconds — and the
+    <a href="https://rrvenkatrama.github.io/projectmetrix-prototype/" rel="noopener">interactive prototype</a>
+    (<a href="https://github.com/rrvenkatrama/projectmetrix-prototype" rel="noopener">source</a>)
+    that every screenshot on this site was captured from.
+  </p>
+
+  <div class="cards">
+    <article>
+      <h3>The engine owns every date</h3>
+      <p>Clients write inputs — durations, dependencies, constraints, calendars. Every computed field
+         is written only by the scheduling engine, which is pure and deterministic: same plan in, same
+         dates out, byte for byte. That's what makes what-if simulation trivial and testing honest.</p>
+    </article>
+    <article>
+      <h3>What-if is free, by design</h3>
+      <p>The engine has no database access and no clock. Simulating a change is copying the plan,
+         applying the change and running it again — no special code path, nothing written. That is why
+         every agent proposal can show its consequences before a human approves it.</p>
+    </article>
+    <article>
+      <h3>Fast enough to feel instant</h3>
+      <p>A full recompute of a 1,000-plus task network runs in milliseconds. The first implementation
+         was two orders of magnitude slower; profiling pointed at calendar arithmetic, and memoising
+         the working-day map fixed it. Measured, not assumed.</p>
+    </article>
+    <article>
+      <h3>Multi-tenant from row one</h3>
+      <p>Tenant isolation is enforced by the database itself through row-level security, not by
+         remembering to add a filter in application code. Cross-tenant reads return nothing and
+         cross-tenant writes are rejected — verified by tests that deliberately try.</p>
+    </article>
+    <article>
+      <h3>Every change is on the record</h3>
+      <p>An append-only audit log captures who changed what, when, and what it looked like before —
+         including which AI assistant proposed it and which human approved. It's the compliance story
+         and the training corpus at the same time.</p>
+    </article>
+    <article>
+      <h3>Enterprise identity, day one</h3>
+      <p>Single sign-on via OIDC, federating whatever directory a company already runs. Access and
+         permissions follow existing groups, joiners and leavers sync automatically, and people who
+         should be nameable — sponsors, vendors, SMEs — don't need accounts.</p>
+    </article>
+    <article>
+      <h3>One API, no divergence</h3>
+      <p>A single specification drives the product surface and the assistant's tool registry, so
+         anything the interface can do can be asked for in plain language. Chat capabilities can't
+         drift from the product because they're generated from the same source.</p>
+    </article>
+    <article>
+      <h3>Upgrades that can't corrupt data</h3>
+      <p>Schema versions are explicit, migrations are forward-only and checksum-protected, and the
+         service refuses to start against a database version it wasn't built for. Failing loudly at
+         boot beats serving errors from columns that don't exist yet.</p>
+    </article>
+    <article>
+      <h3>Deployable where the customer needs it</h3>
+      <p>A stateless API, configuration entirely from the environment, and no local disk state — so
+         scaling out is more instances behind a load balancer, and running inside a customer's own
+         environment is a deployment choice rather than a rewrite.</p>
+    </article>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>How the pieces fit together</h2>
+    <p class="section-lede">
+      The browser draws; the API authorises, persists and audits; the engine computes. Nothing else is
+      allowed to produce a date, which is what makes every number on screen explainable and
+      reproducible.
+    </p>
+    <div class="cards">
+      <article>
+        <h3>Front end</h3>
+        <p>The plan grid and Gantt render what they are told and capture edits. They perform no date
+           arithmetic — a dragged bar reports where it was dropped and waits to be told what the plan
+           now looks like.</p>
+      </article>
+      <article>
+        <h3>API service</h3>
+        <p>Authentication, tenancy, validation, transactions and the audit trail. It applies the edit,
+           loads the plan, calls the engine, and saves the results and the audit entry in a single
+           transaction — so the stored dates always follow from the stored inputs.</p>
+      </article>
+      <article>
+        <h3>Scheduling engine</h3>
+        <p>A pure module with no database, no clock and no network. Plan in; dates, float, critical
+           path and a list of conflicts out. A bad plan is always reported, never thrown away.</p>
+      </article>
+      <article>
+        <h3>Data platform</h3>
+        <p>PostgreSQL holds the declared inputs and the computed results, with tenant isolation
+           enforced in the database. Computed values are a cache of the last run — always deletable,
+           always reproducible.</p>
+      </article>
+      <article>
+        <h3>Agents</h3>
+        <p>Agents are ordinary API clients with scoped tokens. They read through the same contract the
+           UI uses and write only proposals, so there is no privileged back door into the plan.</p>
+      </article>
+      <article>
+        <h3>Background workers</h3>
+        <p>Imports, scheduled syncs and agent runs execute on a queue, separately from the request
+           path — so a large import never slows anyone's page load.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section contact">
+  <h2>Questions about the architecture?</h2>
+  <p>
+    Happy to go deeper on any of it — the scheduling engine especially. The
+    <a href="https://github.com/rrvenkatrama/cpm-scheduling-engine" rel="noopener">open-source engine</a>
+    is the shortest route to seeing how the determinism and the test approach actually work.
+  </p>
+  <p class="contact-actions">
+    <a class="btn primary" href="mailto:rrvenkatrama@gmail.com?subject=ProjectMetrix%20engineering">Get in touch</a>
+    <a class="btn" href="/">Back to the product</a>
+    <a class="btn" href="https://github.com/rrvenkatrama" rel="noopener">GitHub</a>
+  </p>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 ProjectMetrix</span>
+    <span>projectmetrix.dev</span>
+  </div>
+</footer>
+
+</body>
+</html>

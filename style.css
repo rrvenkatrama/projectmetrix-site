@@ -172,3 +172,36 @@ footer { border-top: 1px solid var(--line); padding: 26px 0; }
 
 /* Open-source callout in the engineering section */
 .opensource { border-left: 3px solid var(--accent); padding-left: 16px; margin-top: 18px; }
+
+/* ── additions: loop, agents, page headings ──────────────────────────
+   Same components as above, one variant each — no new visual language. */
+
+/* Four-across variant of .cards, for the control loop and the corpus story. */
+.cards.four { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cards.four p { font-size: .92rem; }
+
+/* Small accent label above a card heading ("Step 2 · Monitor", "Project 10"). */
+.step {
+  display: block; margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: .09em;
+  font-size: .7rem; font-weight: 700; color: var(--accent);
+}
+
+/* Agent cards lead with Monitors / Detects / Recommends, inline. */
+.cards.agents p strong { color: var(--ink); }
+
+/* The "built on a real engine" line directly under the hero lede. */
+.foundation {
+  color: var(--ink); font-weight: 600; font-size: 1.02rem;
+  max-width: 54ch; margin-top: -14px;
+}
+
+/* Honest caveat under a forward-looking section. */
+.section-lede.note { font-size: .95rem; margin-top: 26px; }
+
+/* Sub-page h1 — the hero h1 scale is too large outside the hero. */
+.page-title { font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin-bottom: .4em; }
+
+@media (max-width: 900px) {
+  .cards.four { grid-template-columns: 1fr; }
+}
