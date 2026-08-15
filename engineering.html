@@ -35,15 +35,15 @@
   <p class="section-lede">
     Scheduling is unglamorous and easy to get subtly wrong, which is exactly why so few tools do it.
     Everything an agent recommends rests on the plan being computed correctly, the data being isolated
-    correctly and every change being on the record — so those came first. A few of the decisions
+    correctly and every change being on the record, so those came first. A few of the decisions
     underneath ProjectMetrix.
   </p>
 
   <p class="section-lede opensource">
     Two pieces are open source, if you would rather read code than prose: the
-    <a href="https://github.com/rrvenkatrama/cpm-scheduling-engine" rel="noopener">scheduling engine</a>
-    — dependency-free, 25 tests, with a performance budget asserting a 1,200-task plan computes in
-    milliseconds — and the
+    <a href="https://github.com/rrvenkatrama/cpm-scheduling-engine" rel="noopener">scheduling engine</a>,
+    which is dependency-free, has 25 tests, and carries a performance budget asserting a 1,200-task
+    plan computes in milliseconds. And the
     <a href="https://rrvenkatrama.github.io/projectmetrix-prototype/" rel="noopener">interactive prototype</a>
     (<a href="https://github.com/rrvenkatrama/projectmetrix-prototype" rel="noopener">source</a>)
     that every screenshot on this site was captured from.
@@ -52,14 +52,14 @@
   <div class="cards">
     <article>
       <h3>The engine owns every date</h3>
-      <p>Clients write inputs — durations, dependencies, constraints, calendars. Every computed field
+      <p>Clients write inputs: durations, dependencies, constraints, calendars. Every computed field
          is written only by the scheduling engine, which is pure and deterministic: same plan in, same
          dates out, byte for byte. That's what makes what-if simulation trivial and testing honest.</p>
     </article>
     <article>
       <h3>What-if is free, by design</h3>
       <p>The engine has no database access and no clock. Simulating a change is copying the plan,
-         applying the change and running it again — no special code path, nothing written. That is why
+         applying the change and running it again, with no special code path and nothing written. That is why
          every agent proposal can show its consequences before a human approves it.</p>
     </article>
     <article>
@@ -72,11 +72,11 @@
       <h3>Multi-tenant from row one</h3>
       <p>Tenant isolation is enforced by the database itself through row-level security, not by
          remembering to add a filter in application code. Cross-tenant reads return nothing and
-         cross-tenant writes are rejected — verified by tests that deliberately try.</p>
+         cross-tenant writes are rejected, verified by tests that deliberately try.</p>
     </article>
     <article>
       <h3>Every change is on the record</h3>
-      <p>An append-only audit log captures who changed what, when, and what it looked like before —
+      <p>An append-only audit log captures who changed what, when, and what it looked like before,
          including which AI assistant proposed it and which human approved. It's the compliance story
          and the training corpus at the same time.</p>
     </article>
@@ -84,7 +84,7 @@
       <h3>Enterprise identity, day one</h3>
       <p>Single sign-on via OIDC, federating whatever directory a company already runs. Access and
          permissions follow existing groups, joiners and leavers sync automatically, and people who
-         should be nameable — sponsors, vendors, SMEs — don't need accounts.</p>
+         should be nameable (sponsors, vendors, SMEs) don't need accounts.</p>
     </article>
     <article>
       <h3>One API, no divergence</h3>
@@ -100,7 +100,7 @@
     </article>
     <article>
       <h3>Deployable where the customer needs it</h3>
-      <p>A stateless API, configuration entirely from the environment, and no local disk state — so
+      <p>A stateless API, configuration entirely from the environment, and no local disk state, so
          scaling out is more instances behind a load balancer, and running inside a customer's own
          environment is a deployment choice rather than a rewrite.</p>
     </article>
@@ -119,14 +119,14 @@
       <article>
         <h3>Front end</h3>
         <p>The plan grid and Gantt render what they are told and capture edits. They perform no date
-           arithmetic — a dragged bar reports where it was dropped and waits to be told what the plan
+           arithmetic. A dragged bar reports where it was dropped and waits to be told what the plan
            now looks like.</p>
       </article>
       <article>
         <h3>API service</h3>
         <p>Authentication, tenancy, validation, transactions and the audit trail. It applies the edit,
            loads the plan, calls the engine, and saves the results and the audit entry in a single
-           transaction — so the stored dates always follow from the stored inputs.</p>
+           transaction, so the stored dates always follow from the stored inputs.</p>
       </article>
       <article>
         <h3>Scheduling engine</h3>
@@ -136,7 +136,7 @@
       <article>
         <h3>Data platform</h3>
         <p>PostgreSQL holds the declared inputs and the computed results, with tenant isolation
-           enforced in the database. Computed values are a cache of the last run — always deletable,
+           enforced in the database. Computed values are a cache of the last run, always deletable
            always reproducible.</p>
       </article>
       <article>
@@ -147,7 +147,7 @@
       <article>
         <h3>Background workers</h3>
         <p>Imports, scheduled syncs and agent runs execute on a queue, separately from the request
-           path — so a large import never slows anyone's page load.</p>
+           path, so a large import never slows anyone's page load.</p>
       </article>
     </div>
   </div>
@@ -156,7 +156,7 @@
 <section class="wrap section contact">
   <h2>Questions about the architecture?</h2>
   <p>
-    Happy to go deeper on any of it — the scheduling engine especially. The
+    Happy to go deeper on any of it, the scheduling engine especially. The
     <a href="https://github.com/rrvenkatrama/cpm-scheduling-engine" rel="noopener">open-source engine</a>
     is the shortest route to seeing how the determinism and the test approach actually work.
   </p>
