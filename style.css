@@ -205,3 +205,18 @@ footer { border-top: 1px solid var(--line); padding: 26px 0; }
 @media (max-width: 900px) {
   .cards.four { grid-template-columns: 1fr; }
 }
+
+/* ── environment badge ─────────────────────────────────────────────────
+   Beside the logo, saying which environment this is. Quiet on purpose: it
+   has to be legible in a screenshot without competing with the product name
+   next to it. Colour carries the meaning — amber where data is disposable,
+   blue where it is not. Matches the badge the app renders, so the two read
+   as one system rather than two. */
+.envbadge {
+  display: inline-block; margin-left: 10px; padding: 2px 9px;
+  border-radius: 999px; font-size: .66rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+  border: 1px solid transparent; vertical-align: middle;
+}
+.envbadge.dev  { background: #fef3c7; color: #78350f; border-color: #fcd34d; }
+.envbadge.beta { background: #dbeafe; color: #1e3a8a; border-color: #93c5fd; }
